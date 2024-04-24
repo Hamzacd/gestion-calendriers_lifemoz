@@ -2,20 +2,26 @@
 @section('content')
 <div class="content">
     <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-6">
             <div class="card">
                 <div class="card-header">
-                    Dashboard
+                    Number of Users
                 </div>
 
                 <div class="card-body">
-                    @if(session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+                    <h1>{{ $userCount }}</h1>
+                </div>
+            </div>
+        </div>
 
-                    You are logged in!
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-header">
+                    Number of Events
+                </div>
+
+                <div class="card-body">
+                    <h1>{{ $eventCount }}</h1>
                 </div>
             </div>
         </div>

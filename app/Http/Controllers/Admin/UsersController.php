@@ -51,13 +51,23 @@ class UsersController extends Controller
         return view('admin.users.edit', compact('roles', 'user'));
     }
 
-    public function update(UpdateUserRequest $request, User $user)
-    {
-        $user->update($request->all());
-        $user->roles()->sync($request->input('roles', []));
 
+    public function update(UpdateUserRequest $request, User $user)
+{
+    $user->update($request->all());
+
+    if ($request->has('roles')) {
+        $user->roles()->sync($request->input('roles'));
+    } else {
+        $user->roles()->sync([2]);
+    }
+    if ($user->can('dashboard_access')) {
         return redirect()->route('admin.users.index');
     }
+    return redirect()->route('admin.systemCalendar');
+     // return redirect()->route('admin.users.index');
+}
+
 
     public function show(User $user)
     {

@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'site_title' => 'Recurring Events',
+    'site_title' => 'Events Management',
 ];
