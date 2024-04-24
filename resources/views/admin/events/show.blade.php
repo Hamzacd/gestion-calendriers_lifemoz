@@ -44,6 +44,15 @@
                     </tr>
                     <tr>
                         <th>
+                            {{ trans('cruds.event.fields.description') }}
+                        </th>
+                        <td>
+                            {{ $event->description ?? '' }}
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>
                             {{ trans('cruds.event.fields.recurrence') }}
                         </th>
                         <td>

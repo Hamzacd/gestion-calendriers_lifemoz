@@ -7,9 +7,9 @@
     </div>
 
     <div class="card-body">
-        <form action="{{ route("admin.events.update", [$event->id]) }}" 
-            method="POST" 
-            enctype="multipart/form-data" 
+        <form action="{{ route("admin.events.update", [$event->id]) }}"
+            method="POST"
+            enctype="multipart/form-data"
             @if($event->events_count || $event->event) onsubmit="return confirm('Do you want to apply these changes to all future recurring events, too?');" @endif
         >
             @csrf
@@ -50,6 +50,19 @@
                     {{ trans('cruds.event.fields.end_time_helper') }}
                 </p>
             </div>
+            <div class="form-group {{ $errors->has('description') ? 'has-error' : '' }}">
+                <label for="description">{{ trans('cruds.event.fields.description') }}</label>
+                <textarea id="description" name="description" class="form-control">{{ old('description', isset($event) ? $event->description : '') }}</textarea>
+                @if($errors->has('description'))
+                    <em class="invalid-feedback">
+                        {{ $errors->first('description') }}
+                    </em>
+                @endif
+                <p class="helper-block">
+                    {{ trans('cruds.event.fields.description_helper') }}
+                </p>
+            </div>
+
             @if(!$event->event && !$event->events_count)
                 <div class="form-group {{ $errors->has('recurrence') ? 'has-error' : '' }}">
                     <label>{{ trans('cruds.event.fields.recurrence') }}*</label>

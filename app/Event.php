@@ -32,6 +32,7 @@ class Event extends Model
         'end_time',
         'event_id',
         'start_time',
+        'description',
         'recurrence',
         'created_at',
         'updated_at',
@@ -62,6 +63,17 @@ class Event extends Model
     {
         $this->attributes['end_time'] = $value ? Carbon::createFromFormat(config('panel.date_format') . ' ' . config('panel.time_format'), $value)->format('Y-m-d H:i:s') : null;
     }
+
+    public function getDescriptionAttribute($value)
+    {
+        return $value;
+    }
+
+    public function setDescriptionAttribute($value)
+    {
+        $this->attributes['description'] = $value;
+    }
+
 
     public function event()
     {

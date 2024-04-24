@@ -17,6 +17,8 @@ class CreateEventsTable extends Migration
 
             $table->datetime('end_time');
 
+            $table->string('description');
+
             $table->string('recurrence');
 
             $table->timestamps();

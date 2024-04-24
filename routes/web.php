@@ -12,8 +12,11 @@ Route::get('/home', function () {
 
 Auth::routes(['register' => false]);
 
+Route::get('/register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+Route::post('/register', 'Auth\RegisterController@register');
+
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
-    Route::get('/', 'HomeController@index')->name('home');
+    Route::get('/', 'HomeController@index')->name('home')->middleware('can:dashboard_access');
     // Permissions
     Route::delete('permissions/destroy', 'PermissionsController@massDestroy')->name('permissions.massDestroy');
     Route::resource('permissions', 'PermissionsController');
@@ -31,4 +34,14 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::resource('events', 'EventsController');
 
     Route::get('system-calendar', 'SystemCalendarController@index')->name('systemCalendar');
+});
+
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/', function () {
+        if (auth()->user()->can('dashboard_access')) {
+            return redirect()->route('admin.home');
+        }
+
+        return redirect()->route('admin.systemCalendar');
+    });
 });

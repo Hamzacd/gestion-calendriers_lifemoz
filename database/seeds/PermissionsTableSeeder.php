@@ -92,6 +92,10 @@ class PermissionsTableSeeder extends Seeder
                 'id'    => '21',
                 'title' => 'event_access',
             ],
+            [
+                'id'    => '22',
+                'title' => 'dashboard_access',
+            ],
         ];
 
         Permission::insert($permissions);

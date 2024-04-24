@@ -45,6 +45,19 @@
                     {{ trans('cruds.event.fields.end_time_helper') }}
                 </p>
             </div>
+            <div class="form-group {{ $errors->has('description') ? 'has-error' : '' }}">
+                <label for="description">{{ trans('cruds.event.fields.description') }}</label>
+                <textarea id="description" name="description" class="form-control">{{ old('description', isset($event) ? $event->description : '') }}</textarea>
+                @if($errors->has('description'))
+                    <em class="invalid-feedback">
+                        {{ $errors->first('description') }}
+                    </em>
+                @endif
+                <p class="helper-block">
+                    {{ trans('cruds.event.fields.description_helper') }}
+                </p>
+            </div>
+
             <div class="form-group {{ $errors->has('recurrence') ? 'has-error' : '' }}">
                 <label>{{ trans('cruds.event.fields.recurrence') }}*</label>
                 @foreach(App\Event::RECURRENCE_RADIO as $key => $label)
