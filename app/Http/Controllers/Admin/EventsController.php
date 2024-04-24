@@ -17,11 +17,13 @@ class EventsController extends Controller
     {
         abort_if(Gate::denies('event_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $events = Event::withCount('events')
+        $events = Event::with(['user']) // Eager load the 'user' relationship
+            ->withCount('events')
             ->get();
 
         return view('admin.events.index', compact('events'));
     }
+
 
     public function create()
     {
@@ -32,8 +34,9 @@ class EventsController extends Controller
 
     public function store(StoreEventRequest $request)
     {
-        Event::create($request->all());
-
+        $event = Event::create($request->all());
+        $event->user()->associate(auth()->user());
+        $event->save();
         return redirect()->route('admin.systemCalendar');
     }
 
@@ -50,7 +53,8 @@ class EventsController extends Controller
     public function update(UpdateEventRequest $request, Event $event)
     {
         $event->update($request->all());
-
+        $event->user()->associate(auth()->user());
+        $event->save();
         return redirect()->route('admin.systemCalendar');
     }
 

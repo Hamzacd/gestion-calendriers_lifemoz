@@ -22,8 +22,12 @@
                         <th width="10">
 
                         </th>
+
                         <th>
                             {{ trans('cruds.event.fields.id') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.event.fields.created_by') }}
                         </th>
                         <th>
                             {{ trans('cruds.event.fields.name') }}
@@ -37,12 +41,12 @@
                         <th>
                             {{ trans('cruds.event.fields.description') }}
                         </th>
-                        <th>
+                        {{-- <th>
                             {{ trans('cruds.event.fields.recurrence') }}
                         </th>
                         <th>
                             {{ trans('cruds.event.fields.event') }}
-                        </th>
+                        </th> --}}
                         <th>
                             &nbsp;
                         </th>
@@ -58,6 +62,10 @@
                                 {{ $event->id ?? '' }}
                             </td>
                             <td>
+
+                                {{ $event->user->name ?? '' }}
+                            </td>
+                            <td>
                                 {{ $event->name ?? '' }}
                             </td>
                             <td>
@@ -70,12 +78,12 @@
                                 {{ $event->description ?? '' }}
                             </td>
 
-                            <td>
+                            {{-- <td>
                                 {{ App\Event::RECURRENCE_RADIO[$event->recurrence] ?? '' }}
                             </td>
                             <td>
                                 {{ $event->event->name ?? '' }}
-                            </td>
+                            </td> --}}
                             <td>
                                 @can('event_show')
                                     <a class="btn btn-xs btn-primary" href="{{ route('admin.events.show', $event->id) }}">

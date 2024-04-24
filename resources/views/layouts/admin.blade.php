@@ -46,12 +46,12 @@
             <li class="nav-item dropdown d-md-down-none">
                 <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
                     aria-expanded="false">
-                    Hamza badaouy
+                    {{ auth()->user()->name }}
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">
                     {{-- <a class="dropdown-item" href="">Profile</a> --}}
                     <a class="dropdown-item" href="{{ route('admin.users.edit', auth()->id()) }}">
-                        {{ trans('global.profle') }}
+                        {{ trans('global.profile') }}
                     </a>
                     <a href="#" class="dropdown-item"
                         onclick="event.preventDefault(); document.getElementById('logoutform').submit();">

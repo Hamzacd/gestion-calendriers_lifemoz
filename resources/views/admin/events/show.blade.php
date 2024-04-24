@@ -51,22 +51,22 @@
                         </td>
                     </tr>
 
-                    <tr>
+                    {{-- <tr>
                         <th>
                             {{ trans('cruds.event.fields.recurrence') }}
                         </th>
                         <td>
                             {{ App\Event::RECURRENCE_RADIO[$event->recurrence] ?? '' }}
                         </td>
-                    </tr>
-                    <tr>
+                    </tr> --}}
+                    {{-- <tr>
                         <th>
                             {{ trans('cruds.event.fields.event') }}
                         </th>
                         <td>
                             {{ $event->event->name ?? '' }}
                         </td>
-                    </tr>
+                    </tr> --}}
                 </tbody>
             </table>
             <a style="margin-top:20px;" class="btn btn-default" href="{{ url()->previous() }}">

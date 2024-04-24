@@ -53,12 +53,11 @@
                         {{ $errors->first('description') }}
                     </em>
                 @endif
-                <p class="helper-block">
+                {{-- <p class="helper-block">
                     {{ trans('cruds.event.fields.description_helper') }}
-                </p>
+                </p> --}}
             </div>
-
-            <div class="form-group {{ $errors->has('recurrence') ? 'has-error' : '' }}">
+            <div class="form-group {{ $errors->has('recurrence') ? 'has-error' : '' }}" style="{{ $errors->has('recurrence') ? '' : 'display: none;' }}">
                 <label>{{ trans('cruds.event.fields.recurrence') }}*</label>
                 @foreach(App\Event::RECURRENCE_RADIO as $key => $label)
                     <div>
@@ -72,6 +71,21 @@
                     </em>
                 @endif
             </div>
+
+            {{-- <div class="form-group {{ $errors->has('recurrence') ? 'has-error' : '' }}">
+                <label>{{ trans('cruds.event.fields.recurrence') }}*</label>
+                @foreach(App\Event::RECURRENCE_RADIO as $key => $label)
+                    <div>
+                        <input id="recurrence_{{ $key }}" name="recurrence" type="radio" value="{{ $key }}" {{ old('recurrence', 'none') === (string)$key ? 'checked' : '' }} required>
+                        <label for="recurrence_{{ $key }}">{{ $label }}</label>
+                    </div>
+                @endforeach
+                @if($errors->has('recurrence'))
+                    <em class="invalid-feedback">
+                        {{ $errors->first('recurrence') }}
+                    </em>
+                @endif
+            </div> --}}
             <div>
                 <input class="btn btn-danger" type="submit" value="{{ trans('global.save') }}">
             </div>

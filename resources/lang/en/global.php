@@ -8,6 +8,7 @@ return [
     'clickHereToVerify'                    => 'Click here to verify',
     'create'                               => 'Create',
     'dashboard'                            => 'Dashboard',
+    'profile'                              => 'Edit Profile',
     'delete'                               => 'Delete',
     'downloadFile'                         => 'Download file',
     'edit'                                 => 'Edit',
@@ -249,4 +250,5 @@ return [
     'no_alerts'                            => 'No alerts',
     'calendar'                             => 'Calendar',
     'messenger'                            => 'Messenger',
+
 ];
